@@ -57,16 +57,17 @@ const CodeEditor = () => {
           </div>
 
           <Editor
-            // isLazy={true}
             className="border-2 border-black/80"
             height="95vh"
             width="65vw"
             theme={`vs-${theme}`}
             defaultLanguage="javascript"
+            formatOnType={true}
+            formatOnPaste={true}
             language={language}
             defaultValue={value}
             onMount={handleOnMount}
-            value={value}
+            readOnly={true}
             onChange={(e) => {
                 setValue(e);
             }}

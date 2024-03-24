@@ -38,10 +38,10 @@ const Output = (props) => {
         },
       };
       setLoading(true);
-      const response = await axios.request(options);
-      const token = response.data.token;
+      const post_response = await axios.request(options);
+      const token = post_response.data.token;
       try {
-        const options = {
+      const options = {
           method: "GET",
           url: `${API_baseURL}/submissions/${token}`,
           params: {
@@ -54,10 +54,14 @@ const Output = (props) => {
           },
         };
         setTimeout(async () => {
-          const response = await axios.request(options);
-          console.log(response.data.error)
-          setOutput(response.data);
-          setLoading(false);
+            try{
+                const response = await axios.request(options);
+                console.log(response)
+                setOutput(response.data);
+                setLoading(false);
+            }catch(error){
+                alert(error);
+            }
         }, 4500);
       } catch (error) {
         console.log(error)
