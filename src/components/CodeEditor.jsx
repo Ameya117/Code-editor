@@ -22,6 +22,7 @@ const CodeEditor = () => {
   // console.log(editorRef.current.getValue())
   const onLanguageSelect = (lang, val) => {
     setLanguage(lang);
+    console.log(val)
     setValue(val);
   };
 
@@ -62,12 +63,13 @@ const CodeEditor = () => {
             width="65vw"
             theme={`vs-${theme}`}
             defaultLanguage="javascript"
-            formatOnType={true}
-            formatOnPaste={true}
+            defaultValue="//Enter your code"
+            value={value}
+            // formatOnType={true}
+            // formatOnPaste={true}
             language={language}
-            defaultValue={value}
+            readOnly={false}
             onMount={handleOnMount}
-            readOnly={true}
             onChange={(e) => {
                 setValue(e);
             }}
