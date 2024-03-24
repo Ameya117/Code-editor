@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { languages } from "@/languages";
 import Loading from "./Loading";
+import { useThemeStore } from "@/stores/theme";
 const axios = require("axios");
 
 const Output = (props) => {
   const { code, language } = props;
+  const {theme} = useThemeStore();
   const language_id = languages[language].id;
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const API_baseURL = process.env.NEXT_PUBLIC_API_URL;
@@ -53,11 +55,12 @@ const Output = (props) => {
         };
         setTimeout(async () => {
           const response = await axios.request(options);
-          //   console.log(response.data);
+          console.log(response.data.error)
           setOutput(response.data);
           setLoading(false);
-        }, 5000);
+        }, 4500);
       } catch (error) {
+        console.log(error)
         console.error(error);
       }
     } catch (error) {
@@ -66,15 +69,19 @@ const Output = (props) => {
   };
 
   return (
-    <div className="mx-2 w-[30vw] mt-2">
-      <h2>Output</h2>
+    <div className={`${
+        theme === "light" ? "text-black" : "text-white"
+      } mx-2 w-[80vw] md:w-[50vw] lg:w-[30vw] mt-2`}>
+      <h2 className="font-semibold">Output</h2>
       <button
         className="border border-green-500 rounded-lg px-3 my-2 hover:bg-green-500"
         onClick={compileCode}
       >
         Run
       </button>
-      <div className="p-2 border rounded-md h-[85vh] ">
+      <div className={`${
+        theme === "light" ? "border-black/80" : "border-white"
+      } p-2 border-2  rounded-md h-[85vh]`}>
         {output ? (
           <p>{output.stdout}</p>
         ) : loading ? (
