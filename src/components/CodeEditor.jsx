@@ -22,7 +22,6 @@ const CodeEditor = () => {
   // console.log(editorRef.current.getValue())
   const onLanguageSelect = (lang, val) => {
     setLanguage(lang);
-    console.log(val)
     setValue(val);
   };
 
@@ -65,8 +64,6 @@ const CodeEditor = () => {
             defaultLanguage="javascript"
             defaultValue="//Enter your code"
             value={value}
-            // formatOnType={true}
-            // formatOnPaste={true}
             language={language}
             readOnly={false}
             onMount={handleOnMount}

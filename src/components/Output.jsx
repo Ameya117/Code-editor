@@ -56,7 +56,6 @@ const Output = (props) => {
         setTimeout(async () => {
             try{
                 const response = await axios.request(options);
-                console.log(response)
                 setOutput(response.data);
                 setLoading(false);
             }catch(error){
