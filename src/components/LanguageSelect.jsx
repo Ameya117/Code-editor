@@ -5,7 +5,7 @@ const LanguageSelect = ({ language, onLanguageSelect }) => {
   const [dropdown, setDropdown] = useState(false);
   const languageKeys = Object.keys(languages);
   return (
-    <div className="my-2 ">
+    <div className="my-2 z-50">
       <div
         // tabIndex={0}
         onBlur={() => setDropdown(false)}
@@ -17,12 +17,12 @@ const LanguageSelect = ({ language, onLanguageSelect }) => {
       </div>
 
       {dropdown && (
-        <div className="absolute z-50 py-4 w-[20vw] border  rounded-md bg-slate-100 bg-opacity-95  shadow-xl">
+        <div className="absolute z-50 py-4 w-[20vw] border  rounded-md bg-slate-100 shadow-xl">
           {languageKeys.map((item) => {
             return (
               <h2
                 key={item}
-                className={`${item==language ? "bg-blue-400" : "hover:bg-slate-3  00"}  px-3 cursor-pointer text-base`}
+                className={`${item==language ? "bg-blue-400" : "hover:bg-slate-300"}  px-3 cursor-pointer text-base`}
                 onClick={() => {
                   onLanguageSelect(item,languages[item].value);
                   setDropdown(false);
